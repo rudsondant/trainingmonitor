@@ -3,485 +3,536 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ficha de Treino - Rummenigge</title>
-  <style>
-    * {
-      box-sizing: border-box;
-    }
-
-    body {
-      margin: 0;
-      font-family: Arial, sans-serif;
-      background: #f4f6f8;
-      color: #222;
-    }
-
-    .container {
-      max-width: 1100px;
-      margin: 32px auto;
-      padding: 0 16px 40px;
-    }
-
-    h1 {
-      text-align: center;
-      margin-bottom: 8px;
-    }
-
-    .subtitle {
-      text-align: center;
-      color: #666;
-      margin-bottom: 28px;
-    }
-
-    .day-card {
-      background: #fff;
-      border-radius: 14px;
-      box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
-      margin-bottom: 18px;
-      overflow: hidden;
-      border: 1px solid #e7ebef;
-    }
-
-    .day-header {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 18px 20px;
-      cursor: pointer;
-      background: #ffffff;
-      transition: background 0.2s ease;
-    }
-
-    .day-header:hover {
-      background: #f9fbfc;
-    }
-
-    .day-title {
-      display: flex;
-      align-items: center;
-      gap: 12px;
-      font-size: 18px;
-      font-weight: bold;
-    }
-
-    .badge {
-      font-size: 12px;
-      padding: 5px 10px;
-      border-radius: 999px;
-      background: #eef3f7;
-      color: #445;
-      font-weight: normal;
-    }
-
-    .arrow {
-      font-size: 18px;
-      transition: transform 0.2s ease;
-    }
-
-    .day-card.open .arrow {
-      transform: rotate(180deg);
-    }
-
-    .day-content {
-      display: none;
-      padding: 0 20px 20px;
-      border-top: 1px solid #edf1f4;
-      background: #fcfdfe;
-    }
-
-    .day-card.open .day-content {
-      display: block;
-    }
-
-    h3 {
-      margin: 18px 0 10px;
-      font-size: 16px;
-    }
-
-    .exercise-list {
-      display: grid;
-      gap: 12px;
-    }
-
-    .exercise-item {
-      background: #fff;
-      border: 1px solid #e7ebef;
-      border-radius: 12px;
-      padding: 14px;
-    }
-
-    .exercise-top {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      gap: 16px;
-      flex-wrap: wrap;
-      margin-bottom: 12px;
-    }
-
-    .exercise-name {
-      display: flex;
-      align-items: center;
-      gap: 10px;
-      font-weight: bold;
-    }
-
-    .load-group {
-      display: flex;
-      align-items: center;
-      gap: 8px;
-    }
-
-    .load-group input[type="number"] {
-      width: 90px;
-      padding: 8px;
-      border-radius: 8px;
-      border: 1px solid #ccd5dd;
-      font-size: 14px;
-    }
-
-    .sets {
-      display: flex;
-      flex-wrap: wrap;
-      gap: 10px;
-    }
-
-    .set-label {
-      display: inline-flex;
-      align-items: center;
-      gap: 6px;
-      background: #f4f7fa;
-      border: 1px solid #dde4ea;
-      padding: 8px 10px;
-      border-radius: 10px;
-      font-size: 14px;
-    }
-
-    .warmup-list {
-      display: grid;
-      gap: 8px;
-      margin-bottom: 16px;
-    }
-
-    .warmup-item {
-      background: #fff;
-      border: 1px solid #e7ebef;
-      border-radius: 10px;
-      padding: 10px 12px;
-      display: flex;
-      justify-content: space-between;
-      gap: 12px;
-      flex-wrap: wrap;
-    }
-
-    .controls {
-      display: flex;
-      justify-content: center;
-      gap: 12px;
-      flex-wrap: wrap;
-      margin-bottom: 24px;
-    }
-
-    button {
-      border: none;
-      border-radius: 10px;
-      padding: 12px 16px;
-      cursor: pointer;
-      font-size: 14px;
-      font-weight: bold;
-      background: #1f2937;
-      color: white;
-    }
-
-    button.secondary {
-      background: #6b7280;
-    }
-
-    .footer-note {
-      text-align: center;
-      color: #666;
-      margin-top: 24px;
-      font-size: 14px;
-    }
-
-    @media (max-width: 700px) {
-      .exercise-top {
-        flex-direction: column;
-        align-items: flex-start;
-      }
-
-      .load-group {
-        width: 100%;
-      }
-    }
-  </style>
+  <title>Ficha de Treino V2 - Rummenigge</title>
+ 
 </head>
 <body>
   <div class="container">
-    <h1>Ficha de Treino</h1>
-    <p class="subtitle">Rummenigge - Hipertrofia + Longevidade (40+)</p>
+    <section class="hero">
+      <div class="hero-top">
+        <div>
+          <h1>Ficha de Treino V2</h1>
+          <p class="subtitle">Rummenigge · Hipertrofia + Longevidade 40+ · 4x musculação + 2x natação</p>
+        </div>
+        <div class="toolbar hidden-print">
+          <button class="btn secondary" id="themeToggleBtn">Alternar tema</button>
+          <button class="btn secondary" id="expandAllBtn">Abrir todos</button>
+          <button class="btn secondary" id="collapseAllBtn">Fechar todos</button>
+          <button class="btn warning" id="exportPdfBtn">Exportar PDF</button>
+        </div>
+      </div>
 
-    <div class="controls">
-      <button id="expandAllBtn">Abrir todos</button>
-      <button id="collapseAllBtn" class="secondary">Fechar todos</button>
-      <button id="resetBtn" class="secondary">Limpar marcações</button>
+      <div class="stats">
+        <div class="stat-card">
+          <div class="stat-label">Progresso da semana</div>
+          <div class="stat-value" id="weeklyProgressValue">0%</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Dias concluídos</div>
+          <div class="stat-value" id="completedDaysValue">0/6</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Exercícios concluídos</div>
+          <div class="stat-value" id="completedExercisesValue">0</div>
+        </div>
+        <div class="stat-card">
+          <div class="stat-label">Séries marcadas</div>
+          <div class="stat-value" id="checkedSetsValue">0</div>
+        </div>
+      </div>
+    </section>
+
+    <div class="layout">
+      <aside class="sidebar">
+        <h2>Controle semanal</h2>
+
+        <div class="week-box">
+          <label for="weekPicker">Semana</label>
+          <input type="week" id="weekPicker" />
+          <div class="mini-note">Cada semana salva seus dados separadamente.</div>
+        </div>
+
+        <div class="summary-box">
+          <label for="bodyWeightInput">Peso corporal (kg)</label>
+          <input type="number" id="bodyWeightInput" step="0.1" min="0" placeholder="Ex: 67.5" />
+        </div>
+
+        <div class="summary-box">
+          <label for="waistInput">Cintura (cm)</label>
+          <input type="number" id="waistInput" step="0.1" min="0" placeholder="Ex: 79" />
+        </div>
+
+        <div class="summary-box">
+          <label for="energyInput">Energia no treino (0-10)</label>
+          <input type="number" id="energyInput" step="1" min="0" max="10" placeholder="Ex: 8" />
+        </div>
+
+        <div class="summary-box">
+          <label for="sleepInput">Sono (horas/noite)</label>
+          <input type="number" id="sleepInput" step="0.5" min="0" max="24" placeholder="Ex: 7.5" />
+        </div>
+
+        <div class="summary-box">
+          <label for="weeklyNotesInput">Observações da semana</label>
+          <textarea id="weeklyNotesInput" placeholder="Ex: ombro direito sensível, subir carga no leg press, natação de quarta muito leve..."></textarea>
+        </div>
+
+        <div class="quick-actions hidden-print">
+          <button class="btn success" id="saveSummaryBtn">Salvar resumo</button>
+          <button class="btn secondary" id="clearWeekBtn">Limpar semana</button>
+          <button class="btn secondary" id="resetCurrentWeekBtn">Resetar marcações</button>
+          <button class="btn secondary" id="scrollTopBtn">Voltar ao topo</button>
+        </div>
+      </aside>
+
+      <main class="main-panel">
+        <h2>Treinos da semana</h2>
+        <div id="app"></div>
+        <p class="footer-note">Tudo é salvo automaticamente no navegador. Você pode abrir uma semana diferente sem perder a anterior.</p>
+      </main>
     </div>
-
-    <div id="app"></div>
-
-    <p class="footer-note">
-      As marcações e cargas ficam salvas automaticamente no navegador.
-    </p>
   </div>
 
   <script>
     const workoutData = [
       {
-        day: "Segunda",
-        type: "Natação",
+        day: 'Segunda',
+        type: 'Natação',
         warmup: [
-          { name: "Círculos de braço", reps: "10" },
-          { name: "Rotação de quadril", reps: "10" },
-          { name: "Movimento leve no lugar", reps: "1-2 min" }
+          { name: 'Círculos de braço', reps: '10' },
+          { name: 'Rotação de quadril', reps: '10' },
+          { name: 'Movimento leve no lugar', reps: '1-2 min' }
         ],
         exercises: [
-          { name: "Natação leve/moderada", sets: 1, load: "" }
+          { name: 'Natação leve/moderada', sets: 1, loadLabel: 'Tempo (min)', placeholder: 'Ex: 35' }
         ]
       },
       {
-        day: "Terça",
-        type: "Peito + Costas",
+        day: 'Terça',
+        type: 'Peito + Costas',
         warmup: [
-          { name: "Círculos de braço (frente)", reps: "10" },
-          { name: "Círculos de braço (trás)", reps: "10" },
-          { name: "Band pull-apart", reps: "2 x 15" },
-          { name: "Supino leve", reps: "1 x 12" },
-          { name: "Supino moderado", reps: "1 x 8" }
+          { name: 'Círculos de braço (frente)', reps: '10' },
+          { name: 'Círculos de braço (trás)', reps: '10' },
+          { name: 'Band pull-apart', reps: '2 x 15' },
+          { name: 'Supino leve', reps: '1 x 12' },
+          { name: 'Supino moderado', reps: '1 x 8' }
         ],
         exercises: [
-          { name: "Supino com halteres", sets: 4, load: 0 },
-          { name: "Puxada frontal", sets: 4, load: 0 },
-          { name: "Supino inclinado com halteres", sets: 3, load: 0 },
-          { name: "Remada baixa máquina ou halter", sets: 3, load: 0 },
-          { name: "Crucifixo máquina ou cabo", sets: 3, load: 0 },
-          { name: "Face pull", sets: 3, load: 0 }
+          { name: 'Supino com halteres', sets: 4 },
+          { name: 'Puxada frontal', sets: 4 },
+          { name: 'Supino inclinado com halteres', sets: 3 },
+          { name: 'Remada baixa máquina ou halter', sets: 3 },
+          { name: 'Crucifixo máquina ou cabo', sets: 3 },
+          { name: 'Face pull', sets: 3 }
         ]
       },
       {
-        day: "Quarta",
-        type: "Natação",
+        day: 'Quarta',
+        type: 'Natação',
         warmup: [
-          { name: "Círculos de braço", reps: "10" },
-          { name: "Rotação de quadril", reps: "10" },
-          { name: "Movimento leve no lugar", reps: "1-2 min" }
+          { name: 'Círculos de braço', reps: '10' },
+          { name: 'Rotação de quadril', reps: '10' },
+          { name: 'Movimento leve no lugar', reps: '1-2 min' }
         ],
         exercises: [
-          { name: "Natação leve", sets: 1, load: "" }
+          { name: 'Natação leve', sets: 1, loadLabel: 'Tempo (min)', placeholder: 'Ex: 30' }
         ]
       },
       {
-        day: "Quinta",
-        type: "Pernas",
+        day: 'Quinta',
+        type: 'Pernas',
         warmup: [
-          { name: "Rotação de quadril", reps: "10 cada lado" },
-          { name: "Balanço de perna (frente/trás)", reps: "10 cada" },
-          { name: "Agachamento sem peso", reps: "2 x 15" },
-          { name: "Leg press leve", reps: "1 x 12" },
-          { name: "Leg press moderado", reps: "1 x 8" }
+          { name: 'Rotação de quadril', reps: '10 cada lado' },
+          { name: 'Balanço de perna (frente/trás)', reps: '10 cada' },
+          { name: 'Agachamento sem peso', reps: '2 x 15' },
+          { name: 'Leg press leve', reps: '1 x 12' },
+          { name: 'Leg press moderado', reps: '1 x 8' }
         ],
         exercises: [
-          { name: "Leg press", sets: 4, load: 0 },
-          { name: "Agachamento leve/moderado", sets: 3, load: 0 },
-          { name: "Stiff com halteres", sets: 3, load: 0 },
-          { name: "Cadeira extensora", sets: 3, load: 0 },
-          { name: "Cadeira flexora", sets: 3, load: 0 },
-          { name: "Panturrilha", sets: 4, load: 0 }
+          { name: 'Leg press', sets: 4 },
+          { name: 'Agachamento leve/moderado', sets: 3 },
+          { name: 'Stiff com halteres', sets: 3 },
+          { name: 'Cadeira extensora', sets: 3 },
+          { name: 'Cadeira flexora', sets: 3 },
+          { name: 'Panturrilha', sets: 4 }
         ]
       },
       {
-        day: "Sexta",
-        type: "Ombros + Braços",
+        day: 'Sexta',
+        type: 'Ombros + Braços',
         warmup: [
-          { name: "Círculos de braço (frente)", reps: "10" },
-          { name: "Círculos de braço (trás)", reps: "10" },
-          { name: "Elevação lateral leve", reps: "2 x 15" },
-          { name: "Rosca leve", reps: "1 x 12" },
-          { name: "Desenvolvimento leve", reps: "1 x 12" }
+          { name: 'Círculos de braço (frente)', reps: '10' },
+          { name: 'Círculos de braço (trás)', reps: '10' },
+          { name: 'Elevação lateral leve', reps: '2 x 15' },
+          { name: 'Rosca leve', reps: '1 x 12' },
+          { name: 'Desenvolvimento leve', reps: '1 x 12' }
         ],
         exercises: [
-          { name: "Desenvolvimento com halteres", sets: 4, load: 0 },
-          { name: "Elevação lateral", sets: 3, load: 0 },
-          { name: "Rosca direta", sets: 3, load: 0 },
-          { name: "Tríceps corda", sets: 3, load: 0 },
-          { name: "Rosca alternada", sets: 3, load: 0 },
-          { name: "Tríceps testa leve ou banco", sets: 3, load: 0 },
-          { name: "Prancha", sets: 3, load: 0 }
+          { name: 'Desenvolvimento com halteres', sets: 4 },
+          { name: 'Elevação lateral', sets: 3 },
+          { name: 'Rosca direta', sets: 3 },
+          { name: 'Tríceps corda', sets: 3 },
+          { name: 'Rosca alternada', sets: 3 },
+          { name: 'Tríceps testa leve ou banco', sets: 3 },
+          { name: 'Prancha', sets: 3, loadLabel: 'Tempo (seg)', placeholder: 'Ex: 40' }
         ]
       },
       {
-        day: "Sábado",
-        type: "Superior leve + mobilidade",
+        day: 'Sábado',
+        type: 'Superior leve + mobilidade',
         warmup: [
-          { name: "Círculos de braço", reps: "10" },
-          { name: "Rotação de quadril", reps: "10" },
-          { name: "Alongamento dinâmico leve", reps: "2 min" },
-          { name: "Supino leve", reps: "1 x 12" },
-          { name: "Remada leve", reps: "1 x 12" }
+          { name: 'Círculos de braço', reps: '10' },
+          { name: 'Rotação de quadril', reps: '10' },
+          { name: 'Alongamento dinâmico leve', reps: '2 min' },
+          { name: 'Supino leve', reps: '1 x 12' },
+          { name: 'Remada leve', reps: '1 x 12' }
         ],
         exercises: [
-          { name: "Supino leve", sets: 3, load: 0 },
-          { name: "Remada leve", sets: 3, load: 0 },
-          { name: "Elevação lateral leve", sets: 3, load: 0 },
-          { name: "Bíceps leve", sets: 2, load: 0 },
-          { name: "Tríceps leve", sets: 2, load: 0 }
+          { name: 'Supino leve', sets: 3 },
+          { name: 'Remada leve', sets: 3 },
+          { name: 'Elevação lateral leve', sets: 3 },
+          { name: 'Bíceps leve', sets: 2 },
+          { name: 'Tríceps leve', sets: 2 }
         ]
       }
     ];
 
-    const STORAGE_KEY = "ficha_treino_rummenigge_v1";
+    const STORAGE_PREFIX = 'ficha_treino_v2';
+    const THEME_KEY = 'ficha_treino_theme';
+
+    const weekPicker = document.getElementById('weekPicker');
+    const bodyWeightInput = document.getElementById('bodyWeightInput');
+    const waistInput = document.getElementById('waistInput');
+    const energyInput = document.getElementById('energyInput');
+    const sleepInput = document.getElementById('sleepInput');
+    const weeklyNotesInput = document.getElementById('weeklyNotesInput');
+
+    function getCurrentWeekValue() {
+      return weekPicker.value || getISOWeekString(new Date());
+    }
+
+    function getStorageKey() {
+      return `${STORAGE_PREFIX}_${getCurrentWeekValue()}`;
+    }
+
+    function getISOWeekString(date) {
+      const d = new Date(Date.UTC(date.getFullYear(), date.getMonth(), date.getDate()));
+      const dayNum = d.getUTCDay() || 7;
+      d.setUTCDate(d.getUTCDate() + 4 - dayNum);
+      const yearStart = new Date(Date.UTC(d.getUTCFullYear(), 0, 1));
+      const weekNo = Math.ceil((((d - yearStart) / 86400000) + 1) / 7);
+      return `${d.getUTCFullYear()}-W${String(weekNo).padStart(2, '0')}`;
+    }
 
     function getSavedState() {
-      const saved = localStorage.getItem(STORAGE_KEY);
-      return saved ? JSON.parse(saved) : {};
+      const saved = localStorage.getItem(getStorageKey());
+      return saved ? JSON.parse(saved) : { summary: {}, openDays: {} };
     }
 
     function saveState(state) {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(state));
+      localStorage.setItem(getStorageKey(), JSON.stringify(state));
     }
 
-    function buildId(dayIndex, exerciseIndex, setIndex = null, field = "check") {
-      return setIndex === null
-        ? `day-${dayIndex}-exercise-${exerciseIndex}-${field}`
-        : `day-${dayIndex}-exercise-${exerciseIndex}-set-${setIndex}-${field}`;
+    function makeSetKey(dayIndex, exerciseIndex, setIndex) {
+      return `d${dayIndex}_e${exerciseIndex}_s${setIndex}`;
+    }
+
+    function makeLoadKey(dayIndex, exerciseIndex) {
+      return `d${dayIndex}_e${exerciseIndex}_load`;
+    }
+
+    function makeNoteKey(dayIndex, exerciseIndex) {
+      return `d${dayIndex}_e${exerciseIndex}_note`;
+    }
+
+    function makeCompletedDayKey(dayIndex) {
+      return `d${dayIndex}_completed`;
+    }
+
+    function renderSummary() {
+      const state = getSavedState();
+      const summary = state.summary || {};
+      bodyWeightInput.value = summary.bodyWeight || '';
+      waistInput.value = summary.waist || '';
+      energyInput.value = summary.energy || '';
+      sleepInput.value = summary.sleep || '';
+      weeklyNotesInput.value = summary.notes || '';
+    }
+
+    function saveSummary() {
+      const state = getSavedState();
+      state.summary = {
+        bodyWeight: bodyWeightInput.value,
+        waist: waistInput.value,
+        energy: energyInput.value,
+        sleep: sleepInput.value,
+        notes: weeklyNotesInput.value
+      };
+      saveState(state);
+      updateGlobalStats();
     }
 
     function renderApp() {
-      const app = document.getElementById("app");
+      const app = document.getElementById('app');
       const state = getSavedState();
 
       app.innerHTML = workoutData.map((dayData, dayIndex) => {
+        const totalSets = dayData.exercises.reduce((sum, ex) => sum + ex.sets, 0);
+        const checkedSets = dayData.exercises.reduce((sum, ex, exerciseIndex) => {
+          let count = 0;
+          for (let s = 1; s <= ex.sets; s++) {
+            if (state[makeSetKey(dayIndex, exerciseIndex, s)]) count++;
+          }
+          return sum + count;
+        }, 0);
+        const progress = totalSets ? Math.round((checkedSets / totalSets) * 100) : 0;
+        const completed = !!state[makeCompletedDayKey(dayIndex)];
+        const isOpen = state.openDays?.[dayIndex] ?? false;
+
         const warmupHtml = dayData.warmup.map(item => `
           <div class="warmup-item">
             <span>${item.name}</span>
             <strong>${item.reps}</strong>
           </div>
-        `).join("");
+        `).join('');
 
         const exercisesHtml = dayData.exercises.map((exercise, exerciseIndex) => {
-          const loadId = buildId(dayIndex, exerciseIndex, null, "load");
-          const savedLoad = state[loadId] ?? exercise.load ?? "";
-
-          const setsHtml = Array.from({ length: exercise.sets }, (_, setIndex) => {
-            const checkId = buildId(dayIndex, exerciseIndex, setIndex + 1);
-            const checked = state[checkId] ? "checked" : "";
+          const setsHtml = Array.from({ length: exercise.sets }, (_, idx) => {
+            const setNumber = idx + 1;
+            const setKey = makeSetKey(dayIndex, exerciseIndex, setNumber);
+            const checked = state[setKey] ? 'checked' : '';
             return `
-              <label class="set-label">
-                <input type="checkbox" data-id="${checkId}" ${checked} />
-                Série ${setIndex + 1}
+              <label class="set-chip">
+                <input type="checkbox" data-key="${setKey}" ${checked} />
+                Série ${setNumber}
               </label>
             `;
-          }).join("");
+          }).join('');
+
+          const loadKey = makeLoadKey(dayIndex, exerciseIndex);
+          const noteKey = makeNoteKey(dayIndex, exerciseIndex);
+          const loadLabel = exercise.loadLabel || 'Carga (kg)';
 
           return `
             <div class="exercise-item">
-              <div class="exercise-top">
-                <div class="exercise-name">
-                  <span>${exercise.name}</span>
+              <div class="exercise-head">
+                <div class="exercise-name">${exercise.name}</div>
+                <div>
+                  <label>${loadLabel}</label>
+                  <input type="number" step="0.5" min="0" data-key="${loadKey}" value="${state[loadKey] ?? ''}" placeholder="${exercise.placeholder || 'Ex: 20'}" />
                 </div>
-
-                <div class="load-group">
-                  <label for="${loadId}"><strong>Carga (kg):</strong></label>
-                  <input
-                    type="number"
-                    id="${loadId}"
-                    data-id="${loadId}"
-                    min="0"
-                    step="0.5"
-                    value="${savedLoad}"
-                    placeholder="Ex: 20"
-                  />
+                <div>
+                  <label>Observação</label>
+                  <textarea data-key="${noteKey}" placeholder="Ex: subir carga, execução boa, ombro cansado...">${state[noteKey] ?? ''}</textarea>
                 </div>
               </div>
-
-              <div class="sets">
-                ${setsHtml}
+              <div class="sets">${setsHtml}</div>
+              <div class="exercise-actions">
+                <div class="mini-note">Marque as séries concluídas e registre a carga usada.</div>
+                <button class="btn secondary mark-exercise-btn" data-day="${dayIndex}" data-exercise="${exerciseIndex}">Concluir exercício</button>
               </div>
             </div>
           `;
-        }).join("");
+        }).join('');
 
         return `
-          <div class="day-card">
+          <section class="day-card ${isOpen ? 'open' : ''} ${completed ? 'completed' : ''}" data-day="${dayIndex}">
             <div class="day-header">
-              <div class="day-title">
-                <span>${dayData.day}</span>
-                <span class="badge">${dayData.type}</span>
+              <div class="day-left">
+                <span class="day-name">${dayData.day}</span>
+                <span class="day-tag">${dayData.type}</span>
+                <span class="done-flag">Dia concluído</span>
               </div>
-              <span class="arrow">▼</span>
+              <div class="day-meta">
+                <div class="progress-wrap">
+                  <div class="progress-top">
+                    <span>Progresso do dia</span>
+                    <span>${checkedSets}/${totalSets} séries</span>
+                  </div>
+                  <div class="progress-bar">
+                    <div class="progress-fill" style="width:${progress}%"></div>
+                  </div>
+                </div>
+                <button class="btn success hidden-print complete-day-btn" data-day="${dayIndex}">Concluir dia</button>
+                <span class="arrow">▼</span>
+              </div>
             </div>
-
             <div class="day-content">
-              <h3>Aquecimento</h3>
-              <div class="warmup-list">
-                ${warmupHtml}
-              </div>
-
-              <h3>Treino</h3>
-              <div class="exercise-list">
-                ${exercisesHtml}
-              </div>
+              <div class="section-title">Aquecimento</div>
+              <div class="warmup-list">${warmupHtml}</div>
+              <div class="section-title">Treino</div>
+              <div class="exercise-list">${exercisesHtml}</div>
             </div>
-          </div>
+          </section>
         `;
-      }).join("");
+      }).join('');
 
-      addEventListeners();
+      bindEvents();
+      updateGlobalStats();
     }
 
-    function addEventListeners() {
+    function bindEvents() {
       const state = getSavedState();
 
-      document.querySelectorAll(".day-header").forEach(header => {
-        header.addEventListener("click", () => {
-          header.parentElement.classList.toggle("open");
-        });
-      });
-
-      document.querySelectorAll('input[type="checkbox"]').forEach(input => {
-        input.addEventListener("change", (e) => {
-          state[e.target.dataset.id] = e.target.checked;
+      document.querySelectorAll('.day-header').forEach(header => {
+        header.addEventListener('click', (e) => {
+          if (e.target.closest('button')) return;
+          const card = header.closest('.day-card');
+          const dayIndex = card.dataset.day;
+          card.classList.toggle('open');
+          state.openDays = state.openDays || {};
+          state.openDays[dayIndex] = card.classList.contains('open');
           saveState(state);
         });
       });
 
-      document.querySelectorAll('input[type="number"]').forEach(input => {
-        input.addEventListener("input", (e) => {
-          state[e.target.dataset.id] = e.target.value;
-          saveState(state);
+      document.querySelectorAll('input[type="checkbox"][data-key]').forEach(input => {
+        input.addEventListener('change', (e) => {
+          const latest = getSavedState();
+          latest[e.target.dataset.key] = e.target.checked;
+          saveState(latest);
+          renderApp();
         });
       });
 
-      document.getElementById("expandAllBtn").addEventListener("click", () => {
-        document.querySelectorAll(".day-card").forEach(card => {
-          card.classList.add("open");
+      document.querySelectorAll('input[type="number"][data-key], textarea[data-key]').forEach(el => {
+        const eventName = el.tagName === 'TEXTAREA' ? 'input' : 'input';
+        el.addEventListener(eventName, (e) => {
+          const latest = getSavedState();
+          latest[e.target.dataset.key] = e.target.value;
+          saveState(latest);
+          updateGlobalStats();
         });
       });
 
-      document.getElementById("collapseAllBtn").addEventListener("click", () => {
-        document.querySelectorAll(".day-card").forEach(card => {
-          card.classList.remove("open");
+      document.querySelectorAll('.complete-day-btn').forEach(btn => {
+        btn.addEventListener('click', (e) => {
+          e.stopPropagation();
+          const latest = getSavedState();
+          const dayIndex = btn.dataset.day;
+          const key = makeCompletedDayKey(dayIndex);
+          latest[key] = !latest[key];
+          saveState(latest);
+          renderApp();
         });
       });
 
-      document.getElementById("resetBtn").addEventListener("click", () => {
-        const confirmReset = confirm("Deseja limpar todas as marcações e cargas?");
-        if (!confirmReset) return;
-        localStorage.removeItem(STORAGE_KEY);
-        renderApp();
+      document.querySelectorAll('.mark-exercise-btn').forEach(btn => {
+        btn.addEventListener('click', () => {
+          const latest = getSavedState();
+          const dayIndex = Number(btn.dataset.day);
+          const exerciseIndex = Number(btn.dataset.exercise);
+          const exercise = workoutData[dayIndex].exercises[exerciseIndex];
+          for (let s = 1; s <= exercise.sets; s++) {
+            latest[makeSetKey(dayIndex, exerciseIndex, s)] = true;
+          }
+          saveState(latest);
+          renderApp();
+        });
       });
     }
 
+    function updateGlobalStats() {
+      const state = getSavedState();
+      let totalSets = 0;
+      let checkedSets = 0;
+      let completedExercises = 0;
+      let totalExercises = 0;
+      let completedDays = 0;
+
+      workoutData.forEach((day, dayIndex) => {
+        if (state[makeCompletedDayKey(dayIndex)]) completedDays++;
+
+        day.exercises.forEach((exercise, exerciseIndex) => {
+          totalExercises++;
+          let allChecked = true;
+          for (let s = 1; s <= exercise.sets; s++) {
+            totalSets++;
+            if (state[makeSetKey(dayIndex, exerciseIndex, s)]) {
+              checkedSets++;
+            } else {
+              allChecked = false;
+            }
+          }
+          if (allChecked) completedExercises++;
+        });
+      });
+
+      const weeklyProgress = totalSets ? Math.round((checkedSets / totalSets) * 100) : 0;
+      document.getElementById('weeklyProgressValue').textContent = `${weeklyProgress}%`;
+      document.getElementById('completedDaysValue').textContent = `${completedDays}/${workoutData.length}`;
+      document.getElementById('completedExercisesValue').textContent = String(completedExercises);
+      document.getElementById('checkedSetsValue').textContent = String(checkedSets);
+    }
+
+    function clearCurrentWeek(confirmMessage, keepSummary = false) {
+      const ok = confirm(confirmMessage);
+      if (!ok) return;
+      if (keepSummary) {
+        const state = getSavedState();
+        const summary = state.summary || {};
+        localStorage.removeItem(getStorageKey());
+        saveState({ summary, openDays: {} });
+      } else {
+        localStorage.removeItem(getStorageKey());
+      }
+      renderSummary();
+      renderApp();
+    }
+
+    function setInitialWeek() {
+      weekPicker.value = getISOWeekString(new Date());
+    }
+
+    function applySavedTheme() {
+      const theme = localStorage.getItem(THEME_KEY) || 'light';
+      document.body.classList.toggle('dark', theme === 'dark');
+    }
+
+    document.getElementById('themeToggleBtn').addEventListener('click', () => {
+      const dark = document.body.classList.toggle('dark');
+      localStorage.setItem(THEME_KEY, dark ? 'dark' : 'light');
+    });
+
+    document.getElementById('expandAllBtn').addEventListener('click', () => {
+      const state = getSavedState();
+      state.openDays = {};
+      workoutData.forEach((_, idx) => state.openDays[idx] = true);
+      saveState(state);
+      renderApp();
+    });
+
+    document.getElementById('collapseAllBtn').addEventListener('click', () => {
+      const state = getSavedState();
+      state.openDays = {};
+      workoutData.forEach((_, idx) => state.openDays[idx] = false);
+      saveState(state);
+      renderApp();
+    });
+
+    document.getElementById('exportPdfBtn').addEventListener('click', () => {
+      window.print();
+    });
+
+    document.getElementById('saveSummaryBtn').addEventListener('click', saveSummary);
+    document.getElementById('clearWeekBtn').addEventListener('click', () => clearCurrentWeek('Deseja limpar toda esta semana, incluindo resumo, cargas e marcações?'));
+    document.getElementById('resetCurrentWeekBtn').addEventListener('click', () => clearCurrentWeek('Deseja resetar apenas as marcações e cargas desta semana, mantendo o resumo semanal?', true));
+    document.getElementById('scrollTopBtn').addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
+
+    [bodyWeightInput, waistInput, energyInput, sleepInput, weeklyNotesInput].forEach(el => {
+      el.addEventListener('input', saveSummary);
+    });
+
+    weekPicker.addEventListener('change', () => {
+      renderSummary();
+      renderApp();
+    });
+
+    setInitialWeek();
+    applySavedTheme();
+    renderSummary();
     renderApp();
   </script>
 </body>
 </html>
+
