@@ -3,99 +3,42 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ficha de Treino V2 - Rummenigge</title>
- <link rel="stylesheet" href="style.css">
+  <title>Ficha de Treino V2</title>
+  <link rel="stylesheet" href="css/styles.css" />
 </head>
 <body>
   <div class="container">
-    <section class="hero">
-      <div class="hero-top">
-        <div>
-          <h1>Ficha de Treino V2</h1>
-          <p class="subtitle">Rummenigge · Hipertrofia + Longevidade 40+ · 4x musculação + 2x natação</p>
-        </div>
-        <div class="toolbar hidden-print">
-          <button class="btn secondary" id="themeToggleBtn">Alternar tema</button>
-          <button class="btn secondary" id="expandAllBtn">Abrir todos</button>
-          <button class="btn secondary" id="collapseAllBtn">Fechar todos</button>
-          <button class="btn warning" id="exportPdfBtn">Exportar PDF</button>
-        </div>
+    <header class="app-header">
+      <div>
+        <h1>Ficha de Treino V2</h1>
+        <p class="subtitle">Rummenigge · Hipertrofia + Longevidade 40+</p>
       </div>
-
-      <div class="stats">
-        <div class="stat-card">
-          <div class="stat-label">Progresso da semana</div>
-          <div class="stat-value" id="weeklyProgressValue">0%</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Dias concluídos</div>
-          <div class="stat-value" id="completedDaysValue">0/6</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Exercícios concluídos</div>
-          <div class="stat-value" id="completedExercisesValue">0</div>
-        </div>
-        <div class="stat-card">
-          <div class="stat-label">Séries marcadas</div>
-          <div class="stat-value" id="checkedSetsValue">0</div>
-        </div>
+      <div class="app-header-actions">
+        <button id="themeToggleBtn" class="btn btn-secondary">Alternar tema</button>
       </div>
-    </section>
+    </header>
 
-    <div class="layout">
-      <aside class="sidebar">
-        <h2>Controle semanal</h2>
+    <main>
+      <section class="toolbar" aria-label="Ações principais">
+        <button id="expandAllBtn" class="btn">Abrir todos</button>
+        <button id="collapseAllBtn" class="btn btn-secondary">Fechar todos</button>
+        <button id="clearAllBtn" class="btn btn-danger">Limpar marcações</button>
+        <button id="exportBtn" class="btn btn-secondary">Imprimir / PDF</button>
+      </section>
 
-        <div class="week-box">
-          <label for="weekPicker">Semana</label>
-          <input type="week" id="weekPicker" />
-          <div class="mini-note">Cada semana salva seus dados separadamente.</div>
-        </div>
-
-        <div class="summary-box">
-          <label for="bodyWeightInput">Peso corporal (kg)</label>
-          <input type="number" id="bodyWeightInput" step="0.1" min="0" placeholder="Ex: 67.5" />
-        </div>
-
-        <div class="summary-box">
-          <label for="waistInput">Cintura (cm)</label>
-          <input type="number" id="waistInput" step="0.1" min="0" placeholder="Ex: 79" />
-        </div>
-
-        <div class="summary-box">
-          <label for="energyInput">Energia no treino (0-10)</label>
-          <input type="number" id="energyInput" step="1" min="0" max="10" placeholder="Ex: 8" />
-        </div>
-
-        <div class="summary-box">
-          <label for="sleepInput">Sono (horas/noite)</label>
-          <input type="number" id="sleepInput" step="0.5" min="0" max="24" placeholder="Ex: 7.5" />
-        </div>
-
-        <div class="summary-box">
-          <label for="weeklyNotesInput">Observações da semana</label>
-          <textarea id="weeklyNotesInput" placeholder="Ex: ombro direito sensível, subir carga no leg press, natação de quarta muito leve..."></textarea>
-        </div>
-
-        <div class="quick-actions hidden-print">
-          <button class="btn success" id="saveSummaryBtn">Salvar resumo</button>
-          <button class="btn secondary" id="clearWeekBtn">Limpar semana</button>
-          <button class="btn secondary" id="resetCurrentWeekBtn">Resetar marcações</button>
-          <button class="btn secondary" id="scrollTopBtn">Voltar ao topo</button>
-        </div>
-      </aside>
-
-      <main class="main-panel">
-        <h2>Treinos da semana</h2>
-        <div id="app"></div>
-        <p class="footer-note">Tudo é salvo automaticamente no navegador. Você pode abrir uma semana diferente sem perder a anterior.</p>
-      </main>
-    </div>
+      <section id="stats" class="stats" aria-label="Resumo do treino"></section>
+      <section id="app" class="app" aria-label="Lista de treinos"></section>
+    </main>
   </div>
 
-  <script src="script.js">
-    
-  </script>
+  <script src="js/constants.js"></script>
+  <script src="js/config.js"></script>
+  <script src="js/utils.js"></script>
+  <script src="js/storage.js"></script>
+  <script src="js/state.js"></script>
+  <script src="js/stats.js"></script>
+  <script src="js/ui.js"></script>
+  <script src="js/app.js"></script>
 </body>
 </html>
 
