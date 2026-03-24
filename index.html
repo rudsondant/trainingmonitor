@@ -2,43 +2,60 @@
 <html lang="pt-BR">
 <head>
   <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Ficha de Treino V2</title>
-  <link rel="stylesheet" href="css/styles.css" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Ficha de Treino</title>
+  <link rel="stylesheet" href="css/styles.css"/>
 </head>
 <body>
-  <div class="container">
-    <header class="app-header">
-      <div>
-        <h1>Ficha de Treino V2</h1>
-        <p class="subtitle">Rummenigge · Hipertrofia + Longevidade 40+</p>
-      </div>
-      <div class="app-header-actions">
-        <button id="themeToggleBtn" class="btn btn-secondary">Alternar tema</button>
-      </div>
-    </header>
 
-    <main>
-      <section class="toolbar" aria-label="Ações principais">
-        <button id="expandAllBtn" class="btn">Abrir todos</button>
-        <button id="collapseAllBtn" class="btn btn-secondary">Fechar todos</button>
-        <button id="clearAllBtn" class="btn btn-danger">Limpar marcações</button>
-        <button id="exportBtn" class="btn btn-secondary">Imprimir / PDF</button>
-      </section>
+<div class="container">
 
-      <section id="stats" class="stats" aria-label="Resumo do treino"></section>
-      <section id="app" class="app" aria-label="Lista de treinos"></section>
-    </main>
+  <h1>Ficha de Treino</h1>
+
+  <div class="toolbar">
+    <button id="themeToggleBtn">Tema</button>
+    <button id="expandAllBtn">Abrir</button>
+    <button id="collapseAllBtn">Fechar</button>
+    <button id="exportBtn">PDF</button>
   </div>
 
-  <script src="js/constants.js"></script>
-  <script src="js/config.js"></script>
-  <script src="js/utils.js"></script>
-  <script src="js/storage.js"></script>
-  <script src="js/state.js"></script>
-  <script src="js/stats.js"></script>
-  <script src="js/ui.js"></script>
-  <script src="js/app.js"></script>
+  <div id="stats"></div>
+
+  <div class="layout">
+
+    <aside class="sidebar">
+      <h3>Resumo semanal</h3>
+
+      <input type="week" id="weekPicker"/>
+
+      <input type="number" id="bodyWeightInput" placeholder="Peso"/>
+      <input type="number" id="waistInput" placeholder="Cintura"/>
+      <input type="number" id="energyInput" placeholder="Energia"/>
+      <input type="number" id="sleepInput" placeholder="Sono"/>
+
+      <textarea id="weeklyNotesInput" placeholder="Notas"></textarea>
+
+      <h3>Protocolo</h3>
+      <div id="rehabProtocolBox"></div>
+    </aside>
+
+    <main>
+      <div id="app"></div>
+    </main>
+
+  </div>
+
+</div>
+
+<script src="js/constants.js"></script>
+<script src="js/config.js"></script>
+<script src="js/utils.js"></script>
+<script src="js/storage.js"></script>
+<script src="js/state.js"></script>
+<script src="js/stats.js"></script>
+<script src="js/ui.js"></script>
+<script src="js/app.js"></script>
+
 </body>
 </html>
 
