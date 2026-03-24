@@ -312,3 +312,17 @@ body {
     box-shadow: none;
   }
 }
+.exercise-target {
+  color: var(--muted);
+  font-size: 0.85rem;
+  margin-top: 4px;
+}
+
+.exercise-default-note {
+  margin-bottom: 10px;
+  padding: 10px 12px;
+  border-radius: 10px;
+  background: var(--accent-soft);
+  color: var(--text);
+  font-size: 0.9rem;
+}
